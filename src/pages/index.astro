@@ -1,4 +1,6 @@
 ---
+import type { ImageMetadata } from 'astro';
+import { Image } from "astro:assets";
 import { type CollectionEntry, getCollection } from "astro:content";
 import SocialList from "@/components/SocialList.astro";
 import PostPreview from "@/components/blog/PostPreview.astro";
@@ -18,44 +20,186 @@ const allPostsByDate = allPosts
 const MAX_NOTES = 5;
 const allNotes = await getCollection("note");
 const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
+
+// My images
+import ethereum from "../assets/ethereumlogo.jpeg"
+import smbcnikko from "../assets/smbcnikkologo.jpeg"
+import symbioticlab from "../assets/symbioticlab.png"
+import prismfm from "../assets/prismfmlogo.jpeg"
+import procegence from "../assets/procegencelogo.jpeg"
 ---
 
 <PageLayout meta={{ title: "Home" }}>
+  <!-- INTRO-->
 	<section>
-		<h1 class="title mb-6">Hello World!</h1>
-		<p class="mb-4">
-			Hi, I’m a theme for Astro, a simple starter that you can use to create your website or blog.
-			If you want to know more about how you can customise me, add more posts, and make it your own,
-			click on the GitHub icon link below and it will take you to my repo.
+		<p class="mb-4 text-[20px]">
+    Hi, my name is Wonbin. I am currently a student at the University of Michigan studying computer science.
+    My main interest is in systems development.
 		</p>
 		<SocialList />
 	</section>
+
+  <!-- EDUCATION -->
+  <section class="mt-16">
+		<h2 class="title text-accent mb-6 text-[30px]">Education</h2>
+    <div class="space-y-6 text-white-700 text-[20px]">
+      <div>
+        <div class="flex items-start space-x-2">
+          <span class="text-xl">🎓</span>
+          <div>
+            <h3 class="font-semibold">MS, Computer Science and Engineering</h3>
+            <p>University of Michigan Ann Arbor</p>
+            <p class="text-gray-400 text-sm">August 2025 – Apr 2026</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-start space-x-2">
+          <span class="text-xl">🎓</span>
+          <div>
+            <h3 class="font-semibold">BS, Computer Science and Engineering</h3>
+            <p>University of Michigan Ann Arbor</p>
+            <p class="text-gray-400 text-sm">August 2022 – April 2025</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="mt-16">
+		<h2 class="title text-accent mb-6 text-[30px]">Experience</h2>
+    <div class="space-y-8">
+    <!-- Ethereum Foundation -->
+    <div class="space-y-8 text-white-700 text-[25px]">
+      <div>
+          <div class="flex items-start space-x-4">
+            <Image
+              src={ethereum}
+              alt="Ethereum Foundation logo"
+              width={80}
+              height={80}
+							class="rounded-full"
+            />
+            <div>
+              <h3 class="font-semibold">Ethereum Foundation</h3>
+              <p class="italic text-[15px]">Software Engineer Intern</p>
+              <p class="text-gray-400 text-sm">May 2025 – June 2025</p>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- SMBC Nikko Securities -->
+    <div class="space-y-8 text-white-700 text-[25px]">
+      <div>
+          <div class="flex items-start space-x-4">
+            <Image
+              src={smbcnikko}
+              alt="SMBC Nikko Securities logo"
+              width={80}
+              height={80}
+							class="rounded-full"
+            />
+            <div>
+              <h3 class="font-semibold">SMBC Nikko Securities</h3>
+              <p class="italic text-[15px]">Software Engineer Intern</p>
+              <p class="text-gray-400 text-sm">May 2025 – June 2025</p>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Symbiotic lab -->
+    <div class="space-y-8 text-white-700 text-[25px]">
+      <div>
+          <div class="flex items-start space-x-4">
+            <Image
+              src={symbioticlab}
+              alt="Symbiotic Lab logo"
+              width={80}
+              height={80}
+							class="rounded-full"
+            />
+            <div>
+              <h3 class="font-semibold">Symbiotic Lab</h3>
+              <p class="italic text-[15px]">Research Intern</p>
+              <p class="text-gray-400 text-sm">Mar 2024 – Present</p>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Prism.fm -->
+    <div class="space-y-8 text-white-700 text-[25px]">
+      <div>
+          <div class="flex items-start space-x-4">
+            <Image
+              src={prismfm}
+              alt="Prism.fm logo"
+              width={80}
+              height={80}
+							class="rounded-full"
+            />
+            <div>
+              <h3 class="font-semibold">Prism.fm</h3>
+              <p class="italic text-[15px]">Software Engineer Intern</p>
+              <p class="text-gray-400 text-[15px]">May 2024 – August 2024</p>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Procegence -->
+    <div class="space-y-8 text-white-700 text-[25px]">
+      <div>
+          <div class="flex items-start space-x-4">
+            <Image
+              src={procegence}
+              alt="Procegence logo"
+              width={80}
+              height={80}
+							class="rounded-full"
+            />
+            <div>
+              <h3 class="font-semibold">Procegence</h3>
+              <p class="italic text-[15px]">Software Engineer Intern</p>
+              <p class="text-gray-400 text-[15px]">May 2023 – August 2023</p>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    </div>
+  </section>
+
 	<section class="mt-16">
-		<h2 class="title text-accent mb-6 text-xl"><a href="/posts/">Posts</a></h2>
+		<h2 class="title text-accent mb-6 text-[30px]"><a href="/posts/">Projects</a></h2>
 		<ul class="space-y-6" role="list">
 			{
 				allPostsByDate.map((p) => (
-					<li class="grid gap-2 sm:grid-cols-[auto_1fr]">
+					<li class="grid gap-2 sm:grid-cols-[auto_1fr] text-[20px]">
 						<PostPreview post={p} />
 					</li>
 				))
 			}
 		</ul>
 	</section>
-	{
-		latestNotes.length > 0 && (
-			<section class="mt-16">
-				<h2 class="title text-accent mb-6 text-xl">
-					<a href="/notes/">Notes</a>
-				</h2>
-				<ul class="space-y-6" role="list">
-					{latestNotes.map((note) => (
-						<li>
-							<Note note={note} as="h3" isPreview />
-						</li>
-					))}
-				</ul>
-			</section>
-		)
-	}
+	<!-- { -->
+	<!-- 	latestNotes.length > 0 && ( -->
+	<!-- 		<section class="mt-16"> -->
+	<!-- 			<h2 class="title text-accent mb-6 text-xl"> -->
+	<!-- 				<a href="/notes/">Notes</a> -->
+	<!-- 			</h2> -->
+	<!-- 			<ul class="space-y-6" role="list"> -->
+	<!-- 				{latestNotes.map((note) => ( -->
+	<!-- 					<li> -->
+	<!-- 						<Note note={note} as="h3" isPreview /> -->
+	<!-- 					</li> -->
+	<!-- 				))} -->
+	<!-- 			</ul> -->
+	<!-- 		</section> -->
+	<!-- 	) -->
+	<!-- } -->
 </PageLayout>
