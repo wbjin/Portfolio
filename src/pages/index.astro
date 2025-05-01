@@ -21,12 +21,23 @@ const MAX_NOTES = 5;
 const allNotes = await getCollection("note");
 const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
 
+// Projects
+import ProjectCard from '../components/ProjectCard.astro';
+
+
 // My images
+import michigan from "../assets/michiganlogo.jpeg"
 import ethereum from "../assets/ethereumlogo.jpeg"
+import mercari from "../assets/mercarilogo.jpeg"
 import smbcnikko from "../assets/smbcnikkologo.jpeg"
 import symbioticlab from "../assets/symbioticlab.png"
 import prismfm from "../assets/prismfmlogo.jpeg"
 import procegence from "../assets/procegencelogo.jpeg"
+
+const allPostsById = allPosts.reduce((acc, post) => {
+  acc[post.id] = post;
+  return acc;
+}, {} as Record<string, typeof posts[number]>);
 ---
 
 <PageLayout meta={{ title: "Home" }}>
@@ -44,8 +55,14 @@ import procegence from "../assets/procegencelogo.jpeg"
 		<h2 class="title text-accent mb-6 text-[30px]">Education</h2>
     <div class="space-y-6 text-white-700 text-[20px]">
       <div>
-        <div class="flex items-start space-x-2">
-          <span class="text-xl">🎓</span>
+        <div class="flex items-start space-x-4">
+          <Image
+            src={michigan}
+            alt="Michigan"
+            width={80}
+            height={80}
+            class="rounded-full"
+          />
           <div>
             <h3 class="font-semibold">MS, Computer Science and Engineering</h3>
             <p>University of Michigan Ann Arbor</p>
@@ -55,8 +72,14 @@ import procegence from "../assets/procegencelogo.jpeg"
       </div>
 
       <div>
-        <div class="flex items-start space-x-2">
-          <span class="text-xl">🎓</span>
+        <div class="flex items-start space-x-4">
+          <Image
+            src={michigan}
+            alt="Michigan"
+            width={80}
+            height={80}
+            class="rounded-full"
+          />
           <div>
             <h3 class="font-semibold">BS, Computer Science and Engineering</h3>
             <p>University of Michigan Ann Arbor</p>
@@ -73,6 +96,7 @@ import procegence from "../assets/procegencelogo.jpeg"
     <div class="space-y-8">
     <!-- Ethereum Foundation -->
     <div class="space-y-8 text-white-700 text-[25px]">
+      <a href="/posts/ethereum">
       <div>
           <div class="flex items-start space-x-4">
             <Image
@@ -89,10 +113,33 @@ import procegence from "../assets/procegencelogo.jpeg"
             </div>
           </div>
       </div>
+      </a>
+    </div>
+
+    <!-- Mercari Foundation -->
+    <div class="space-y-8 text-white-700 text-[25px]">
+      <a href="/posts/mercari">
+      <div>
+          <div class="flex items-start space-x-4">
+            <Image
+              src={mercari}
+              alt="Mercari logo"
+              width={80}
+              height={80}
+							class="rounded-full"
+            />
+            <div>
+              <h3 class="font-semibold">Mercari</h3>
+              <p class="italic text-[15px]">Software Engineer Intern</p>
+              <p class="text-gray-400 text-sm">June 2025 – June 2025</p>
+            </div>
+          </div>
+      </div>
     </div>
 
     <!-- SMBC Nikko Securities -->
     <div class="space-y-8 text-white-700 text-[25px]">
+      <a href="/posts/smbc">
       <div>
           <div class="flex items-start space-x-4">
             <Image
@@ -109,6 +156,7 @@ import procegence from "../assets/procegencelogo.jpeg"
             </div>
           </div>
       </div>
+      </a>
     </div>
 
     <!-- Symbiotic lab -->
@@ -133,6 +181,7 @@ import procegence from "../assets/procegencelogo.jpeg"
 
     <!-- Prism.fm -->
     <div class="space-y-8 text-white-700 text-[25px]">
+      <a href="/posts/prismfm">
       <div>
           <div class="flex items-start space-x-4">
             <Image
@@ -149,6 +198,7 @@ import procegence from "../assets/procegencelogo.jpeg"
             </div>
           </div>
       </div>
+      </a>
     </div>
 
     <!-- Procegence -->
@@ -177,13 +227,10 @@ import procegence from "../assets/procegencelogo.jpeg"
 	<section class="mt-16">
 		<h2 class="title text-accent mb-6 text-[30px]"><a href="/posts/">Projects</a></h2>
 		<ul class="space-y-6" role="list">
-			{
-				allPostsByDate.map((p) => (
-					<li class="grid gap-2 sm:grid-cols-[auto_1fr] text-[20px]">
-						<PostPreview post={p} />
-					</li>
-				))
-			}
+      {
+      <ProjectCard post={allPostsById.sync} url="/posts/sync"/>
+      <ProjectCard post={allPostsById.nvimconfig} url="/posts/nvimconfig" image="/nvim.png"/>
+      }
 		</ul>
 	</section>
 	<!-- { -->

@@ -2,10 +2,18 @@
 title: "My Neovim Config"
 description: "This is a description of my neovim config and why I use neovim"
 publishDate: "Oct 2023"
-tags: ["neovim"]
+tags: ["lua", "personal"]
 ---
 
-## Check it out [here](https://github.com/wbjin/nvim)
+<a href="https://github.com/wbjin/nvim">
+  <img
+    src="/github-mark-white.svg"
+    alt="GitHub"
+    class="w-20 h-20"
+    style="filter: brightness(0) invert(1);"
+  />
+</a>
+
 
 ## Why Neovim
 Some of you may wonder why I use neovim as my IDE instead of more modern tools like VSCode. I'm a
@@ -29,6 +37,6 @@ My config is heavily inspired by TJ Devries'
 - Hop
 
 It looks a little like this:
-![image](images/nvim.png)
+![image](/nvim.png)
 
 
