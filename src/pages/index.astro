@@ -161,6 +161,7 @@ const allPostsById = allPosts.reduce((acc, post) => {
 
     <!-- Symbiotic lab -->
     <div class="space-y-8 text-white-700 text-[25px]">
+      <a href="/posts/zeus">
       <div>
           <div class="flex items-start space-x-4">
             <Image
@@ -177,6 +178,7 @@ const allPostsById = allPosts.reduce((acc, post) => {
             </div>
           </div>
       </div>
+      </a>
     </div>
 
     <!-- Prism.fm -->
@@ -228,8 +230,14 @@ const allPostsById = allPosts.reduce((acc, post) => {
 		<h2 class="title text-accent mb-6 text-[30px]"><a href="/posts/">Projects</a></h2>
 		<ul class="space-y-6" role="list">
       {
-      <ProjectCard post={allPostsById.sync} url="/posts/sync"/>
-      <ProjectCard post={allPostsById.nvimconfig} url="/posts/nvimconfig" image="/nvim.png"/>
+      <ProjectCard post={allPostsById.cracked} url="/posts/cracked/"/ image="/cracked++logo.png"/>
+      <ProjectCard post={allPostsById.bingtea} url="/posts/bingtea/"/ image="/bingtealogo.png"/>
+      <ProjectCard post={allPostsById.zeus} url="/posts/zeus/" image="/zeuslogo.png"/>
+      <ProjectCard post={allPostsById.dsprojects} url="/posts/dsprojects/"/>
+      <ProjectCard post={allPostsById.networkprojects} url="/posts/networkprojects/"/>
+      <ProjectCard post={allPostsById.osprojects} url="/posts/osprojects/"/>
+      <ProjectCard post={allPostsById.sync} url="/posts/sync/"/>
+      <ProjectCard post={allPostsById.nvimconfig} url="/posts/nvimconfig/" image="/nvim.png"/>
       }
 		</ul>
 	</section>

@@ -9,8 +9,8 @@ import type { GetStaticPaths, Page } from "astro";
 import { Icon } from "astro-icon/components";
 
 export const getStaticPaths = (async ({ paginate }) => {
-	const MAX_POSTS_PER_PAGE = 10;
-	const MAX_TAGS = 7;
+	const MAX_POSTS_PER_PAGE = 40;
+	const MAX_TAGS = 20;
 	const allPosts = await getAllPosts();
 	const uniqueTags = getUniqueTags(allPosts).slice(0, MAX_TAGS);
 	return paginate(allPosts.sort(collectionDateSort), {
@@ -27,7 +27,7 @@ interface Props {
 const { page, uniqueTags } = Astro.props;
 
 const meta = {
-	title: "Posts",
+	title: "Projects",
 };
 
 const paginationProps = {
