@@ -102,6 +102,10 @@ RTT and oneway latencies of the kernel network stack and kernel bypass. We can a
 latency improvement is coming from by looking at how long it takes for a packet to go back and forth
 from the app to the NIC.
 
+Edit: This isn't it to say that the linux kernel is not good for networking. The linux kernel is
+simply designed for something other than a trading platform. The kernel provides a **shared time
+system**. For trading platforms, a **real time system** is desirable.
+
 ### Other things I did
 - Build a machine from scratch: I built a machine from scratch by accessing an ILO. Configured the
 operating system, interface cards, and disk storage. Managed packages with yum and rpm

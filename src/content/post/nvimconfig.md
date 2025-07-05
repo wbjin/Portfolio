@@ -17,10 +17,10 @@ tags: ["lua", "personal"]
 
 ## Why Neovim
 Some of you may wonder why I use neovim as my IDE instead of more modern tools like VSCode. I'm a
-big fan of VSCode and I think it's a great IDE but neovim provides customizability fall greater than
-any IDE out there. With neovim, I rarely have to take my hands off of the keyboard and I can write
-code much faster than I was every able to. I started out by using vim bindings on VSCode and
-eventually made the jump to neovim once I go comfortable. I encourage others to do the same if
+big fan of VSCode and I think it's a great IDE but neovim provides customizability far greater than
+any IDE out there. With neovim, I rarely have to take my hands off of the keyboard and I
+code much faster than I was ever able to. I started out by using vim bindings on VSCode and
+eventually made the jump to neovim once I got comfortable. I encourage others to do the same if
 they're curious about how to improve their workflow.
 
 ## My Config
@@ -38,5 +38,3 @@ My config is heavily inspired by TJ Devries'
 
 It looks a little like this:
 ![image](/nvim.png)
-
-
