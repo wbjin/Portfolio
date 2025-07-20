@@ -9,6 +9,8 @@ import { getAllPosts } from "@/data/post";
 import PageLayout from "@/layouts/Base.astro";
 import { collectionDateSort } from "@/utils/date";
 
+import Analytics from '@vercel/analytics/astro'
+
 // Posts
 const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
@@ -41,6 +43,7 @@ const allPostsById = allPosts.reduce((acc, post) => {
 ---
 
 <PageLayout meta={{ title: "Home" }}>
+  <Analytics />
   <!-- INTRO-->
 	<section>
 		<p class="mb-4 text-[20px]">
