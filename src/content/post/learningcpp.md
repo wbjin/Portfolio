@@ -14,3 +14,11 @@ tags: ["c++", "personal"]
     style="filter: brightness(0) invert(1);"
   />
 </a>
+
+This repo contains my notes from these resources
+- [LearnCPP](https://www.learncpp.com/)
+- [C++ Software Desgin](https://www.oreilly.com/library/view/c-software-design/9781098113155/)
+- [C++17 in Detail](https://www.cppindetail.com/)
+- [Leetcode](https://leetcode.com/)
+
+More to come!

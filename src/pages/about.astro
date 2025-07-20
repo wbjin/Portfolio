@@ -6,7 +6,10 @@ const meta = {
 	description: "A little bit about me",
 	title: "About",
 };
+
 import portrait from "../assets/portrait.jpg";
+import toffee1 from "../assets/toffee1.JPG";
+import toffee2 from "../assets/toffee2.JPG";
 ---
 
 <PageLayout meta={meta}>
@@ -37,5 +40,21 @@ import portrait from "../assets/portrait.jpg";
       <li>Operating System in Three Easy Pieces (my favorite)</li>
 		</ul>
     <p>My most recently watched anime is: Monster</p>
+
+
+    <p>Here are some pictures with my dog Toffee!</p>
+    <Image
+      src={toffee1}
+      alt="Toffee"
+      width={300}
+      height={300}
+    />
+
+    <Image
+      src={toffee2}
+      alt="Toffee2"
+      width={300}
+      height={300}
+    />
 	</div>
 </PageLayout>
