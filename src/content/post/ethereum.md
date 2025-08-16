@@ -15,8 +15,8 @@ community programs to advance Ethereum’s scalability, security, and adoption.
 ## My work
 I was on the Peer to Peer (P2P) Networking Team. P2P networking is the
 networking abstraction that supports communication between nodes in the network
-using `libp2p`. The main theme of my work was improving observability of the
-network layer of Ethereum. This came with three major workflows:
+using `libp2p`. The main theme of my work was simulation and benchmark of the
+network.
 
 ## 1) Simulation and Benchmarking
 
@@ -29,30 +29,40 @@ by a central entity. Therefore, it is hard to test certain behaviors and
 scenarios that may occur simply because you don't control all the nodes.
 
 ### Solution
-The foundation has a crawler that crawls nodes on mainnet and exports data about
-a node such as which client/implementation it is running, the IP address, geo
-location, autnomous system number, etc. Using this list of nodes in the network
-and other data sources such as latencies between autnomous systems/geo locations
-and bandwidth limitations of a node, it is possible to replicate the network
-graph of mainnet **locally**. This is powerful because you can create certain
-scenarios that you wouldn't be able to on the actual network and test the
-interoperability of differnet implementations of `libp2p` throughly. Luckily,
-there is already a tool for simulating called `shadow`. `shadow`, from its
-documentation, "is a discrete-event network simulator that directly executes real
-application code, enabling you to simulate distributed systems with thousands of
-network-connected processes in realistic and scalable private network
-experiments using your laptop, desktop, or server running Linux."
+In order to test across different implementations, we can define specific
+scenarios, simulate the interactions between the implementations, and check
+that the expected behavior happened. This means that we need two pieces to
+simulate effectively: a tool for simulating the network interactions and a way
+to understand the state of the Ethereum network. I worked on both the
+simulation tool and created a tool for understanding the network.
 
-### My work
-- Source up to date and reliable inter-autnomous system latency measurements.
-  RIPE Atlas has streaming API that continously streams ping measurements between
-  probes across the world. I built a program that subcribes to this stream and
-  exports the data to a data store. https://github.com/wbjin/PingStreamer
-- Create a network graph using the list of source nodes and latency measurements
-  that can be fed into `shadow`. Because there are limitations on how many
-  processes you can realistically run for a `shadow` simulation, I had to come up
-  with a way to as closely replicate mainnet's network graph without blowing a
-  computer up
+### Shadow
+Shadow was the tool used for simulating network interactions. It is a discrete
+event simulator meaning it is based on events such as a message being sent or a
+system call being made. Shadow simulates network interactions by intercepting
+the system calls made by application programs using techniques like
+`LD_PRELOAD` and `seccomp`. What I did was to implement various system calls
+and socket options that were not present in Shadow to allow for QUIC support.
+These system calls were `recvmmsg` and `sendmmsg` which allow programs to
+receive and send multiple UDP datagrams in one system call. This was
+interesting for me because I got to look at the implementation of these
+syscalls in the Linux kernel and understand how different flags and
+functionalities work.
+
+### Kazami
+In order to understand the state of the Ethereum network, I built a tool called
+`kazami`. `kazami` does three things: 1) Collect latency data 2) Collect
+Ethereum node data 3) Generate network graph and characteristics to feed into
+Shadow.
+
+- Latency Data: Subscribe to RIPE Atlas's streaming API and continuously ingest
+results of `ping` experiments of probes all across the world. Collect latency
+data between cities, countries, and continents.
+- Node Data: Use `nebula`, a crawler built by Probelab. Take parts that are
+needed just for crawling Ethereum consensus layer with discv5 and collect
+information such as IP address and geo location of Ethereum nodes.
+- Mapping: Cross list these two data sources to generate network graphs and
+network characterisitcs like latency to use for a shadow simulation.
 
 ## 2) Telemetry and Analytics of libp2p
 
@@ -76,22 +86,3 @@ Things we looked for were
 Here are some visualizations
 <img src="/ef_graph_geo.png" width="700">
 <img src="/ef_graph_duplicates.png" width="700">
-
-## 3) Expanding telemetry collection of the networking layer
-
-### Motivation
-All of the above is powered by robust telemetry data. While the current
-telemetry pipeline has a lot insightful data, it doesn't capture all of the
-available metrics from `libp2p` implementations. Getting even more telemetry
-will allow more robust and a more complete view of the network.
-
-
-### Solution
-There are three different ways telemetry data is collected: crawlers, nodes that
-sit in the network and act as a regular node but also export telemetry data,
-full clients that export telemetry data.
-
-### My work
-- Create new gRPC service for collecting node resource usage such. Key metrics
-  include CPU usage, memory usage, jitter.
-- Expanding existing gRPC services and writing new kafka translations to collect more `libp2p` metrics.

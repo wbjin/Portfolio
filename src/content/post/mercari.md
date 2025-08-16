@@ -18,39 +18,26 @@ I was on the Cross Border, Global One Product (XB GOP) team. The team is
 responsible for building the cross border marketplace platform, allowing
 Japanese users to sell items to users in Taiwan, Hong Kong, and eventually the
 rest of the world. I focused specifically on the backend of three parts of the
-platform: translation, migration from legacy platform, and operations tooling
-for customer support agents.
+platform: translation, migration from legacy platform, cart, and operations tooling
+for customer support agents. I also wrote a proposal for self hosting LLMs
+instead of relying on external services.
 
-### Translation
-Content is translated using LLMs.
+### Backend
+- Translation: Some product details are translated using LLMs. I refactored the
+translation module to support versioning of translations with different models.
+- Data migration: I helped with migrating from data from a legacy platform to
+the GOP platform. I wrote various complex SQL queries across different
+databases and tables using Big Query.
+- Cart: I wrote a new endpoint for getting the number of unique items in a
+user's cart. I worked with frontend engineers for designing protobufs.
+- Operations too: Most of my time was spent on helping build out the operations
+tool for GOP. I worked on working with a different team at the company in
+charge of authentication in integrating authentication using JWTs. I helped
+write proposals for a new way of doing authorization (checking that a user has
+permissions for a certain action). I also wrote desgin documents and
+implemented various feature endpoints such as retreiveing order data.
 
-- Refactor translation module to support versioning of translations with
-different models. Allows poor translations flagged by customers and support
-agents to be retranslated with a different model
-- Improve system prompt used for translation
 
-
-### Migration from legacy platform
-The cross border marketbaplace platform has two versions: Inhouse and GOP.
-Inhouse was built very quickly as a way to prove that the cross border business
-would be viable but becuase it is heavily based on the existing system that
-powers the Japan marketplace, it is not scalable for widespread cross border
-operations. GOP is the platform that was built specifically for cross border
-operations and will replace Inhouse. I helped with the migration of data from
-Inhouse to GOP
-
-- Write cron job that logs orders and items in the orders that are in Inhouse
-but missing in GOP
-- Write SQL queries to validate order data that was migrated from Inhouse to
-GOP, checking each field to make sure no data was lost or mapped incorrectly
-
-### Operations tooling
-Operations tooling for customer support agents was not implemented in GOP yet. I
-was able to create and deploy a microservice for this new feature
-
-- Create and deploy a microservice that authenticates customer support agents
-
-## Microservices
 Mercari strongly embraces microservices and modularization. The tech stack I
 used was Go with gRPC on Google Cloud Platform. Through the internship, I became
 really familiar with writing a new module/microservice, writing protobufs, and
@@ -77,3 +64,9 @@ understanding when it comes to things like code style, error handling policy
 (dieing quickly vs trying to recover), and the general state of the application
 (is latency an issue? are we trying to add more features or stabilize existing
 ones, etc etc)
+
+### Self hosting LLMs
+Along with my actual work on GOP, I took initiative and worked on a proposal to
+replace external LLM services with an internally hosted one. By using a GCP VM
+with a Nvidia L4 GPU and hosting LLMs with vLLM, I was able to propose a
+solution that cut 25% in costs.
