@@ -232,6 +232,7 @@ const allPostsById = allPosts.reduce((acc, post) => {
 		<h2 class="title text-accent mb-6 text-[30px]"><a href="/posts/">Projects</a></h2>
 		<ul class="space-y-6" role="list">
       {
+      <ProjectCard post={allPostsById.linux_networking} url="/posts/linux_networking/"/>
       <ProjectCard post={allPostsById.itrace} url="/posts/itrace/"/>
       <ProjectCard post={allPostsById.learningcpp} url="/posts/learningcpp/"/>
       <ProjectCard post={allPostsById.bingtea} url="/posts/bingtea/"/ image="/bingtealogo.png"/>
