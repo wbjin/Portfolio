@@ -2,7 +2,7 @@
 title: "Linux Networking"
 description: "A dive into the Linux Networking subsystem"
 publishDate: "March 2026"
-tags: ["presonal"]
+tags: ["personal"]
 ---
 
 <a href="https://github.com/wbjin/learningcpp/tree/main/understanding_linux_kernel/networking">

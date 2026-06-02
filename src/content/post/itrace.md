@@ -2,7 +2,7 @@
 title: "itrace"
 description: "Processor level runtime instruction tracer"
 publishDate: "September 2025"
-tags: ["c++", "presonal"]
+tags: ["c++", "personal"]
 ---
 
 <a href="https://github.com/itrace-project/itrace">
