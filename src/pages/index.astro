@@ -31,6 +31,7 @@ import michigan from "../assets/michiganlogo.jpeg"
 import ethereum from "../assets/ethereumlogo.jpeg"
 import mercari from "../assets/mercarilogo.jpeg"
 import smbcnikko from "../assets/smbcnikkologo.jpeg"
+import google from "../assets/googlelogo.png"
 import symbioticlab from "../assets/symbioticlab.png"
 import prismfm from "../assets/prismfmlogo.jpeg"
 import procegence from "../assets/procegencelogo.jpeg"
@@ -96,6 +97,28 @@ const allPostsById = allPosts.reduce((acc, post) => {
 		<h2 class="title text-accent mb-6 text-[30px]">Experience</h2>
 		<h6 class="title text-white-700 mb-6 text-[15px]">Click the icons!</h6>
     <div class="space-y-8">
+    <!-- Google -->
+    <div class="space-y-8 text-white-700 text-[25px]">
+      <a href="/posts/google">
+      <div>
+          <div class="flex items-start space-x-4">
+            <Image
+              src={google}
+              alt="Google logo"
+              width={80}
+              height={80}
+							class="rounded-full"
+            />
+            <div>
+              <h3 class="font-semibold">Google</h3>
+              <p class="italic text-[15px]">Software Engineer Intern</p>
+              <p class="text-gray-400 text-sm">May 2026 – August 2026</p>
+            </div>
+          </div>
+      </div>
+      </a>
+    </div>
+
     <!-- Ethereum Foundation -->
     <div class="space-y-8 text-white-700 text-[25px]">
       <a href="/posts/ethereum">
